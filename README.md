@@ -1,4 +1,4 @@
-# misc_py
+# My python utility scripts code dump
 A place to store all my .py utility scripts.
 </hr>
 <ins>2folderComparison: </ins> Compares the contents of two directories and print the extra files in each folder. (for quick check before synching backups.)
