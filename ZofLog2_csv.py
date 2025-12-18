@@ -25,14 +25,19 @@ print(f"-----------------\nHere are the columns in file {src}:")
 for i in range(0,len(inputCols)):
     print(i,inputCols[i], sep=": ")
 
-selectedCols=input("-----------------\nPlease select the colummns you want to include in the output file by typing their index numbers, separated by a comma. \nFor example, if you want the first (0.) and third (2.) columns, type \"0,2\". :")
-selectedCols_split=selectedCols.split(',')
-filteredDF=pd.DataFrame([inDF.iloc[:,int(i)] for i in selectedCols_split]).transpose()
-filteredDFCols=list(filteredDF.columns)
-print(f"-----------------\nHere are the columns that will be included in the output file:")
-for i in range(0,len(filteredDFCols)):
-    print(i,filteredDFCols[i], sep=": ")
-colsProcess=input(f"-----------------\nPlease select the columns you want to calculate Z(log2()) by typing their index numbers, separated by a comma:")
+selectedCols=input("-----------------\nPlease select the colummns you want to include in the output file by typing their index numbers, separated by a comma. Leave blank if using all columns. \nFor example, if you want the first (0.) and third (2.) columns, type \"0,2\". :")
+if selectedCols!=None:
+    selectedCols_split=selectedCols.split(',')
+    filteredDF=pd.DataFrame([inDF.iloc[:,int(i)] for i in selectedCols_split]).transpose()
+    filteredDFCols=list(filteredDF.columns)
+    print(f"-----------------\nHere are the columns that will be included in the output file:")
+    for i in range(0,len(filteredDFCols)):
+        print(i,filteredDFCols[i], sep=": ")
+else:
+    filteredDF=inDF
+    print(f"-----------------\nAll columns from the input file will be included.")
+
+colsProcess=input(f"-----------------\nPlease select the columns you want to calculate Z(log2()) of by typing their index numbers, separated by a comma. Leave blank to skip this step.: ")
 colsProcess_split=colsProcess.split(',')
 for i in range (0,len(colsProcess_split)):
     id=colsProcess_split[i]
